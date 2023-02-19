@@ -62,8 +62,8 @@ class RLSo:
             if len(self.MDS) <= self.low_gamma:
             # if len(self.MDS) <= self.low_gamma * n:
                 break
-            # random integer between 0 and n-1
-            i = np.random.randint(n)
+            # random integer between 1 and n-1
+            i = np.random.randint(1,n, 1)[0]
 
             # perturb p
             perturbed_p = np.concatenate((np.roll(self.p[:i], -1), self.p[i:]))

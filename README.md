@@ -19,8 +19,12 @@ This paper converts the MDS problem into a permutation search problem and uses a
 
 * Run the script `python rlso.py`
 * enter the lower bound of gamma (maximum size of dominating set, k)
+* enter -1 to stop the experiment
 
 ## Example
 * The file `graph.txt` contains the graph of the example in the paper.
 * Run the script `python rlso.py`
-* enter the lower bound of gamma (maximum size of dominating set, k): 3
+* enter the lower bound of gamma (maximum size of dominating set, k): 4
+* enter -1 to stop the experiment
+
+    ![graph example](graph.png)
