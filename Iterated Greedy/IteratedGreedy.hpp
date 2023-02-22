@@ -215,15 +215,12 @@ vector<int> LocalImprovement(vector<int> D, const Graph &G) {
 vector<int> Destruction(vector<int> D, float beta) {
     vector<int> D_b = D; 
 
-    // Seed the random number generator
-    random_device rd;
-    mt19937 g(rd());
-
     // Determine how many vertices to remove
     int num_vertices_to_remove = (int)((int)D_b.size()*beta);
 
     // Shuffle the vertices in D_b
-    shuffle(D_b.begin(), D_b.end(), g);
+    srand(time(0));
+    random_shuffle(D_b.begin(), D_b.end());
 
     // Remove the first num_vertices_to_remove vertices from D_b
     D_b.erase(D_b.begin(), D_b.begin() + num_vertices_to_remove);
