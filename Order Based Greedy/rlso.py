@@ -1,28 +1,10 @@
 import numpy as np
 from env import *
+from Graph import Graph
 
 # cant fix seed otherwise RLSoMDS will always choose the same j for purturbation in every iteration
 # np.random.seed(11)
-
-
-class Graph:
-    def __init__(self, n, e, adj):
-        self.n = n
-        self.e = e
-        self.adj = adj
-
-    def printGraph(self):
-        print('Number of nodes:', self.n)
-        print('Number of edges:', self.e)
-        print('Adjacency list:')
-        for i in range(self.n):
-            print(i, end=" -> ")
-            for j in self.adj[i]:
-                print(j, end=" ")
-            print()
-
-        print()
-
+# low_gamma is k
 
 class RLSo:
     def __init__(self, G, low_gamma, max_iter=MAX_ITER):
@@ -54,10 +36,10 @@ class RLSo:
         n = self.G.n
 
         for it in range(self.max_iter):
-            if (it % 100 == 0):
-                print('iteration:', it)
-                print('MDS so far:', self.MDS)
-                print()
+            # if (it % 100 == 0):
+            #     print('iteration:', it)
+            #     print('MDS so far:', self.MDS)
+            #     print()
 
             if len(self.MDS) <= self.low_gamma:
             # if len(self.MDS) <= self.low_gamma * n:
@@ -78,66 +60,5 @@ class RLSo:
 
         return (self.MDS, self.p)
 
-
-
-
-if __name__ == "__main__":
-
-    # # take console input
-    # n = int(input("Enter number of nodes: "))
-    # e = int(input("Enter number of edges: "))
-    # for i in range(e):
-    #     u, v = map(int, input().split())
-    #     adj[u].append(v)
-    #     adj[v].append(u)
-
-
-    # take graph input from file
-    with open("graph.txt", "r") as f:
-        n = int(f.readline())
-        e = int(f.readline())
-
-        adj = [[] for i in range(n)]
-
-        for line in f:
-            u, v = map(int, line.split())
-            adj[u].append(v)
-            adj[v].append(u)
-
-    G = Graph(n, e, adj)
-
-
-
-    print('--------RLSo experiment setup-------')
-    G.printGraph()
-    print()
-
-    # run while loop until user enters a valid gamma
-    while True:
-        print('---------------------------------')
-        
-        
-        # low_gamma = float(input("Enter low gamma: "))
-        # if low_gamma < 0 or low_gamma > 1:
-        #     break
-
-        # print('looking for Dominating set of size at max', int(low_gamma * n), '...')
-        # print()
-
-        low_gamma = int(input("Enter low gamma: "))
-        if low_gamma <= 0 or low_gamma > n:
-            break
-        
-        print('looking for Dominating set of size at max', low_gamma, '...')
-        print()
-
-        rlso = RLSo(G, low_gamma)
-        MDS, p = rlso.RLSoMDS()
-
-        print('MDS:', MDS)
-        print('p:', p)
-
-        print()
-
-
-    print('experiment done')
+    def setLowGamma(self, low_gamma):
+        self.low_gamma = low_gamma
