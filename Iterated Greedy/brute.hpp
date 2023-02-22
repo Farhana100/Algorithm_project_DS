@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-using namespace std;
-
 typedef vector<vector<int>> Graph;
 
 
@@ -44,33 +41,4 @@ vector<int> BruteMDSP(Graph G) {
     }
 
     return D;
-}
-
-
-int main() {
-
-    freopen("input_3.txt", "r", stdin);
-
-    int n, m;
-    cin >> n >> m;
-    Graph G(n);
-    for(int i = 0; i < m; i++) {
-        int u, v;
-        cin >> u >> v;
-        G[u].push_back(v);
-        G[v].push_back(u);
-    }
-
-    // for(int i = 0; i < n; i++) {
-    //     cout << i << ": ";
-    //     for(int j: G[i]) cout << j << " ";
-    //     cout << endl;
-    // }
-
-    vector<int> D = BruteMDSP(G);
-    cout << "Dominating Set: ";
-    for(int u: D) cout << u << " ";
-    cout << endl;
-
-    return 0;
 }
