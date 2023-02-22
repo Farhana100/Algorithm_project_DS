@@ -37,6 +37,18 @@ if __name__ == '__main__':
     n = [int(row[0]) for row in data]
     accuracy = [float(row[1]) for row in data]
     avg_diff = [float(row[2]) for row in data]
+    ig_time = [float(row[3]) for row in data]
+    brute_time = [float(row[4]) for row in data]
     
     plot_chart(n, accuracy, 'IG Performance: Accuracy', 'n', 'accuracy', 'tab:blue','accuracy.png', [0,1.1])
     plot_chart(n, avg_diff, 'IG Performance: Average Difference', 'n', 'avg_diff', 'tab:orange','avg_diff.png')
+
+    plt.plot(n, ig_time, color='tab:blue', label='IG')
+    plt.plot(n, brute_time, color='tab:orange', label='Brute Force')
+    plt.legend()
+    plt.title('Performance Comparison: Time')
+    plt.yscale('log')
+    plt.xlabel('n')
+    plt.ylabel('time (log scaled micro-second)')
+    plt.savefig("Time.png")
+    plt.clf()
