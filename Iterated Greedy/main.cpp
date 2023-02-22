@@ -291,6 +291,37 @@ vector<int> IteratedGreedy(vector<vector<int>> G, int beta, int delta) {
 
 
 int main() {
-    // TODO: Testing   
+    
+    freopen("input_3.txt", "r", stdin);
+
+    int n, m;
+    cin >> n >> m;
+    Graph G(n);
+    for(int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        G[u].push_back(v);
+        G[v].push_back(u);
+    }
+
+    // for(int i = 0; i < n; i++) {
+    //     cout << i << ": ";
+    //     for(int j: G[i]) cout << j << " ";
+    //     cout << endl;
+    // }
+
+    vector<int> D = IteratedGreedy(G, 0.5, 10);
+    cout << "Dominating Set: ";
+    for(int u: D) cout << u << " ";
+    cout << endl;
+
     return 0;
 }
+
+/**
+ * Outputs:
+ * 1 -> 11 2 5 6
+ * 2 -> 0 6 4
+ * 3 -> 0 9 7 1
+ * 
+ */
