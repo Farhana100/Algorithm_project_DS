@@ -13,9 +13,15 @@ int main() {
     GraphGenerator G;
     double total_accuracy = 0;
     double total_avg_diff = 0;
-    int iters = 20;
+    int iters, n1, n2;
+    cout << "Enter number of iterations: ";
+    cin >> iters;
+    cout << "Enter range of n: ";
+    cin >> n1 >> n2;
 
-    for(int n = 10; n <= 20; n++) {
+    fout << "n,accuracy,avg_diff\n";
+
+    for(int n = n1; n <= n2; n++) {
         cout << "--------------------- n = " << n << "----------------------------\n";
         double accuracy = 0;
         double avg_diff = 0;
@@ -40,8 +46,8 @@ int main() {
         fout << n << "," << fixed << setprecision(5) << accuracy << "," << avg_diff << "\n";
     }
 
-    total_accuracy /= (11*iters);
-    total_avg_diff /= (11*iters);
+    total_accuracy /= ((n2-n1+1)*iters);
+    total_avg_diff /= ((n2-n1+1)*iters);
 
     cout << "Total Accuracy: " << fixed << setprecision(5) << total_accuracy << "\n";
     cout << "Total Avg Diff: " << fixed << setprecision(5) << total_avg_diff << "\n";
